@@ -2,18 +2,23 @@ import React, { useEffect, useState} from 'react'
 
 const Person = () => {
     
-    const [personData, setPersonData] = useState()
+    let [personData, setPersonData] = useState()
 
     useEffect(() => {
         fetch('/index')
         .then( res => res.json())
-        .then(data => setPersonData(data))
+        .then(data => {
+          console.log(data)
+          setPersonData(data.person)
+        })
     }, [])
+
+    // const personData = ['John','Jim']
     
     return (
       <div>
          {personData.map((e,i) => {
-          <p>{e}</p>
+          return <p>{e}</p>
          })}
       </div>
     )
